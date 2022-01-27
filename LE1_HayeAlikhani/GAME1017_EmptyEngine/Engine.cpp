@@ -65,7 +65,7 @@ bool Engine::KeyDown(SDL_Scancode c)
 
 void Engine::Update()
 {
-	
+	STMA::Update();
 }
 
 void Engine::Render()
@@ -105,6 +105,12 @@ int Engine::Run()
 	}
 	Clean();
 	return 0;
+}
+
+Engine& Engine::Instance()
+{
+	static Engine instance;
+	return instance;
 }
 
 void Engine::Clean()
