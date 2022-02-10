@@ -96,7 +96,7 @@ void GameState::Enter()
 		// Look at the last two examples from Week 3
 
 	XMLDocument xmlDoc;
-	xmlDoc.LoadFile("TurretPos.xml");
+	xmlDoc.LoadFile("TurretPosition.xml");
 	XMLNode* pRoot = xmlDoc.FirstChildElement("Root");
 	// Now let's create objects from the XML file.
 	XMLElement* pElement = pRoot->FirstChildElement("Turret");
@@ -146,7 +146,7 @@ void GameState::Update()
 			s_bullets[i] = nullptr;
 			s_bullets.erase(s_bullets.begin() + i);
 			s_bullets.shrink_to_fit();
-			cout << "Cleared bullets" << endl;
+			cout << "Cleared bullet offscreen" << endl;
 		}
 	for (unsigned i = 0; i < s_enemies.size(); i++)
 		if (s_enemies[i]->GetPos().y > HEIGHT)
@@ -155,7 +155,7 @@ void GameState::Update()
 			s_enemies[i] = nullptr;
 			s_enemies.erase(s_enemies.begin() + i);
 			s_enemies.shrink_to_fit();
-			cout << "Cleared enemy" << endl;
+			cout << "Cleared enemy offscreen" << endl;
 		}
 		// for all bullets
 			// if bullet goes off screen (four bounds checks)
@@ -211,7 +211,7 @@ void GameState::Exit()
 		pElement->SetAttribute("Height", m_turrets[i]->GetPos().y);
 		pRoot->InsertEndChild(pElement);
 	}
-	xmlDoc.SaveFile("TurretPos.xml");
+	xmlDoc.SaveFile("TurretPosition.xml");
 
 	ClearTurrets();
 	for (unsigned i = 0; i < s_enemies.size(); i++)
